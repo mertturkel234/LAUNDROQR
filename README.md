@@ -1,107 +1,76 @@
 <p align="center">
-  <img src="docs/logo.png" alt="LaundroQR Official Logo" width="220" />
+  <img src="docs/logo.png" alt="LaundroQR Official Logo" width="200" />
 </p>
 
-# LaundroQR 🧺
+<h1 align="center">LaundroQR</h1>
+<p align="center">
+  <strong>Smart Laundry Management System for Dormitories &amp; Co-living Spaces</strong>
+</p>
 
-[![CI Status](https://img.shields.io/github/actions/workflow/status/mertturkel234/LAUNDROQR/ci.yml?branch=main&label=LaundroQR%20CI)](https://github.com/mertturkel234/LAUNDROQR/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.1-black?logo=next.js)](https://nextjs.org/)
-[![Flutter](https://img.shields.io/badge/Flutter-3.44-02569B?logo=flutter)](https://flutter.dev/)
-[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL%20%2B%20RLS-3ECF8E?logo=supabase)](https://supabase.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
-**Akıllı Çamaşırhane Yönetim Platformu** — Üniversite yurtları, KYK yurtları ve özel öğrenci rezidansları için çok kiracılı (multi-tenant), QR kod tabanlı çamaşır ve kurutma makinesi takip sistemi.
-
----
-
-## 🌐 Live Demo (Canlı Sistem Bağlantıları)
-
-Sistem **Supabase Cloud (PostgreSQL + RLS)** veritabanı altyapısıyla uçtan uca entegre ve canlı olarak çalışmaktadır:
-
-- 🖥️ **Kurumsal Yönetim Paneli (Next.js Admin on Vercel):** [https://admin-beta-navy.vercel.app](https://admin-beta-navy.vercel.app)
-- 📱 **Yurt Sakini Mobil Uygulaması (Flutter Web on Netlify):** [https://dashing-capybara-ac1036.netlify.app](https://dashing-capybara-ac1036.netlify.app)
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" /></a>
+  <a href="https://flutter.dev/"><img src="https://img.shields.io/badge/Flutter-3.44-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" /></a>
+  <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-PostgreSQL%20%2B%20RLS-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
+  <a href="https://admin-beta-navy.vercel.app/"><img src="https://img.shields.io/badge/Vercel-Admin%20Live-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
+  <a href="https://dashing-capybara-ac1036.netlify.app/"><img src="https://img.shields.io/badge/Netlify-Mobile%20Live-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Netlify" /></a>
+</p>
 
 ---
 
-## 📊 Investor Relations & Pitch Deck (Yatırımcı Sunumu)
+## 🚀 Live Demos & Investor Pitch Deck
 
-LaundroQR'ın pazar vizyonu, gelir modeli, çok kiracılı SaaS mimarisi ve üniversite/KYK yurtları ölçeklenme stratejisini içeren resmi yatırımcı sunumuna aşağıdan ulaşabilirsiniz:
+Experience the fully deployed, cloud-connected LaundroQR ecosystem in your browser:
 
-- 📄 **[LaundroQR Official Pitch Deck (PDF)](docs/LaundroQR_Pitch_Deck.pdf)**
-
----
-
-## 📌 Project Status (Proje Durumu)
-
-| Faz | Modül | Durum | Doğrulama |
-|---|---|---|---|
-| **Phase 0** | Mimari Tasarım, PRD & Güvenlik Planı | ✅ Tamamlandı | `docs/` |
-| **Phase 1** | PostgreSQL Şeması, RLS Politikaları, Atomik RPC'ler & CI | ✅ Tamamlandı | `supabase/` + GitHub Actions |
-| **Phase 2** | Next.js 15 Yönetim Paneli & Flutter Mobil Temeli | ✅ Tamamlandı | Vitest (6/6) & Flutter Test (3/3) |
-| **Phase 3–6** | Canlı Supabase Cloud, Vercel & Netlify Üretim Dağıtımı | ✅ Tamamlandı | Canlı Bulut Entegrasyonu |
-| **Phase 7–10** | IoT Röle Webhook, FCM Bildirimler, Cüzdan & APK Otomasyonu | ✅ Tamamlandı | Tam Otonom Paket |
-
-> **Şeffaflık ve Dürüstlük İlkesi:** QR kod ve yazılım zamanlayıcısı tek başına fiziksel bir çamaşır makinesinin çalışıp çalışmadığını veya boşaltıldığını doğrulayamaz. LaundroQR, tüm makine durumlarını doğrulama kaynağına göre (**Tahmini / Yazılım Zamanlayıcısı**, **Kullanıcı Bildirimi**, **Donanım Sensörü Doğrulamalı**) açıkça etiketler.
+- 📱 **Resident App (Flutter Web):** [dashing-capybara-ac1036.netlify.app](https://dashing-capybara-ac1036.netlify.app/)
+- 💻 **Admin Dashboard (Next.js):** [admin-beta-navy.vercel.app](https://admin-beta-navy.vercel.app/)
+- 📊 **Investor Pitch Deck (PDF):** [docs/LaundroQR_Pitch_Deck.pdf](docs/LaundroQR_Pitch_Deck.pdf)
 
 ---
 
-## 🏗️ Architecture Overview (Mimari Genel Bakış)
+## ✨ Key Features & Phase 1–10 Engineering Highlights
 
-LaundroQR, tek bir geliştiricinin uçtan uca yönetebileceği, gereksiz mikroservis karmaşasından arındırılmış güvenli bir monorepo mimarisine sahiptir:
+- 🔒 **Multi-Tenant Architecture & Row Level Security (RLS):** Strict tenant isolation across all PostgreSQL tables (`organizations`, `buildings`, `laundry_rooms`, `machines`, `memberships`, `machine_sessions`, `maintenance_tickets`, `credits`, `audit_logs`). University and KYK dormitories operate in completely isolated security boundaries.
+- ⚡ **Atomic Session Lifecycle & Concurrency Protection:** Server-authoritative timestamps and partial unique indexing (`uq_one_active_session_per_machine`) paired with `FOR UPDATE` row-level locking prevent double-booking and race conditions when two residents scan the same QR code simultaneously.
+- 🏷️ **Honest State Labeling (`status_source`):** Clearly distinguishes between software timer estimates (`software`), resident/staff reports (`user_report`), and hardware telemetry (`sensor`). Completing a timer transitions a machine to `cycle_complete` (*Awaiting Unload*) rather than falsely claiming it is physically empty.
+- 🔄 **Cryptographic QR Rotation & Audit Trail:** Dormitory staff and administrators can rotate compromised or worn machine QR UUIDs in one click with full `audit_logs` traceability.
+- 🔌 **IoT & Smart Relay Webhooks (`/api/iot`):** Hardware-ready webhook endpoint designed to trigger ESP32 / Arduino smart relays over HTTP/MQTT using per-machine IP and MAC addressing.
+- 🔔 **Push Notifications (Firebase Cloud Messaging):** Integrated `NotificationService` (`firebase_core` & `firebase_messaging`) for cycle-completion alerts and maintenance updates.
+- 💳 **Resident Wallet & Sandbox Payment Gateway:** Built-in `credits` ledger with atomic top-up RPC (`add_wallet_funds`) and an interactive Flutter `WalletScreen` supporting Iyzico / Stripe sandbox top-ups.
+- 🤖 **CI/CD & Automated Android Release Pipeline:** GitHub Actions workflows for secret hygiene, SQL policy verification, Next.js typechecking/Vitest suite, Flutter widget tests, and automated Android `.apk` release builds.
+
+---
+
+## 🏗️ Monorepo Architecture
 
 ```
-laundroqr/
+LAUNDROQR/
 ├── apps/
-│   ├── admin/           # Next.js 15 (App Router) + TypeScript Kurumsal Yönetim Paneli
-│   └── mobile/          # Flutter 3.x Yurt Sakini (Öğrenci) Mobil Uygulaması
+│   ├── admin/           # Next.js 15 (App Router) + TypeScript Institutional Admin Dashboard
+│   └── mobile/          # Flutter 3.44 Resident App (Android, iOS & Web)
 ├── supabase/
-│   ├── config.toml      # Supabase CLI & Auth yapılandırması
-│   ├── migrations/      # Sıralı SQL şema, RLS ve atomik RPC migration dosyaları
-│   ├── seed.sql         # İzole çok kiracılı (multi-tenant) demo/test verisi
-│   └── tests/           # RLS kiracı izolasyonu ve eşzamanlılık (race condition) testleri
-├── docs/                # PRD, Mimari, Veritabanı, Güvenlik, Yol Haritası, ADR ve Pitch Deck
-├── .github/             # GitHub Actions CI/CD, APK Release ve Issue/PR şablonları
-├── .editorconfig        # IDE arası kod biçimlendirme standardı
-└── LICENSE              # MIT Lisansı
+│   ├── config.toml      # Supabase CLI & Auth configuration
+│   ├── migrations/      # Ordered SQL schema, RLS policies, IoT & Wallet RPCs
+│   ├── seed.sql         # Multi-tenant non-production demo seed data
+│   └── tests/           # Transactional RLS & concurrency verification suite
+├── docs/                # PRD, Architecture, Database, Security, Roadmap & Pitch Deck PDF
+└── .github/workflows/   # Automated CI checks & Android Release APK workflow
 ```
-
-### Temel Güvenlik ve Mühendislik Özellikleri
-- **Çok Kiracılı İzolasyon (Multi-Tenant RLS):** Tüm veritabanı tablolarında PostgreSQL Row Level Security (RLS) zorunludur. Bir yurdun sakini veya yöneticisi başka bir yurdun verilerine erişemez.
-- **Atomik Seans Başlatma:** `uq_one_active_session_per_machine` kısmi benzersiz indeksi ve `FOR UPDATE` satır kilidi kullanan `start_machine_session` RPC fonksiyonu, aynı makineye aynı anda iki kişinin seans başlatmasını veritabanı seviyesinde engeller.
-- **Güvenli QR Kod Rotasyonu:** Yıpranan veya kopyalanan QR etiketleri yönetici tarafından tek tıkla (`rotate_machine_qr`) yenilenir ve işlem `audit_logs` tablosuna kaydedilir.
 
 ---
 
-## 🚀 Local Setup (Yerel Kurulum)
+## 🛠️ Quick Local Setup
 
-Detaylı kurulum kılavuzu için [docs/SETUP.md](docs/SETUP.md) belgesini inceleyebilirsiniz.
-
-### 1. Depoyu Klonlayın
 ```bash
+# 1. Clone the repository
 git clone https://github.com/mertturkel234/LAUNDROQR.git
 cd LAUNDROQR
-```
 
-### 2. Ortam Değişkenlerini Yapılandırın
-`.env.example` şablonunu kullanarak `apps/admin/.env.local` ve `apps/mobile/.env.local` dosyalarını oluşturun (`.gitignore` tarafından otomatik korunur):
-
-```env
-# apps/admin/.env.local
-NEXT_PUBLIC_SUPABASE_URL="https://YOUR_PROJECT_REF.supabase.co"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_PUBLIC_KEY"
-```
-
-### 3. Next.js Kurumsal Yönetim Panelini Çalıştırın (`apps/admin`)
-```bash
+# 2. Run the Next.js Admin Panel (http://localhost:3000)
 cd apps/admin
 npm install
 npm run dev
-```
-Tarayıcıda `http://localhost:3000` adresini açın.
 
-### 4. Flutter Mobil Uygulamasını Çalıştırın (`apps/mobile`)
-```bash
+# 3. Run the Flutter Resident App (in a separate terminal)
 cd apps/mobile
 flutter pub get
 flutter run -d chrome
@@ -109,22 +78,19 @@ flutter run -d chrome
 
 ---
 
-## 📚 Teknik Dokümantasyon
+## 📚 Technical Documentation
 
-| Belge | Açıklama |
-|---|---|
-| [docs/LaundroQR_Pitch_Deck.pdf](docs/LaundroQR_Pitch_Deck.pdf) | Yatırımcı Sunumu (Pitch Deck) |
-| [docs/PRD.md](docs/PRD.md) | Ürün gereksinimleri, kullanıcı hikayeleri ve kabul kriterleri |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Sistem mimarisi, veri akışı ve durum makinesi diyagramları |
-| [docs/DATABASE.md](docs/DATABASE.md) | Veritabanı tabloları, indeksler ve silme politikaları |
-| [docs/SECURITY.md](docs/SECURITY.md) | RLS politikaları, RBAC matrisi ve gizli bilgi güvenliği |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | Faz bazlı geliştirme yol haritası |
-| [docs/TEST_PLAN.md](docs/TEST_PLAN.md) | Birim, entegrasyon, RLS ve eşzamanlılık test stratejisi |
-| [docs/DECISIONS.md](docs/DECISIONS.md) | Mimari karar kayıtları (ADR) |
-| [docs/PILOT_AND_DEPLOYMENT.md](docs/PILOT_AND_DEPLOYMENT.md) | Kurumsal pilot hazırlığı, KVKK ve dağıtım rehberi |
+- [Product Requirements Document (PRD)](docs/PRD.md)
+- [System Architecture](docs/ARCHITECTURE.md)
+- [Database Schema & Migrations](docs/DATABASE.md)
+- [Security & Multi-Tenant RLS Model](docs/SECURITY.md)
+- [Development Roadmap](docs/ROADMAP.md)
+- [Test Plan & Verification Strategy](docs/TEST_PLAN.md)
+- [Architecture Decision Records (ADR)](docs/DECISIONS.md)
+- [Pilot Readiness & Deployment Guide](docs/PILOT_AND_DEPLOYMENT.md)
 
 ---
 
-## 🤝 Katkıda Bulunma ve Lisans
+## 📄 License
 
-Katkı kuralları için [CONTRIBUTING.md](CONTRIBUTING.md) ve topluluk kuralları için [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) dosyalarını inceleyebilirsiniz. Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
+Distributed under the [MIT License](LICENSE). Built by **Mert Türkel**.
