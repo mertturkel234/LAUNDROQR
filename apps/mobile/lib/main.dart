@@ -65,11 +65,41 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
     }
   }
 
+  @override
+  void dispose() {
+    _qrController.dispose();
+    _programController.dispose();
+    _ticketTitleController.dispose();
+    _ticketDescController.dispose();
+    super.dispose();
+  }
+
   void _showFeedback(String message, {bool isError = false}) {
     setState(() {
       _bannerMessage = message;
       _isErrorBanner = isError;
     });
+  }
+
+  Widget _buildActiveTabContent(
+    List<MachineModel> machines,
+    List<SessionModel> sessions,
+    List<SessionModel> activeSessions,
+  ) {
+    switch (_selectedIndex) {
+      case 0:
+        return _buildMachinesTab(machines, activeSessions);
+      case 1:
+        return _buildQrScannerTab(machines);
+      case 2:
+        return _buildSessionsTab(sessions);
+      case 3:
+        return _buildMaintenanceTab(machines);
+      case 4:
+        return _buildProfileTab();
+      default:
+        return _buildMachinesTab(machines, activeSessions);
+    }
   }
 
   @override
@@ -138,16 +168,7 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
               ),
             ),
           Expanded(
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: [
-                _buildMachinesTab(machines, activeSessions),
-                _buildQrScannerTab(machines),
-                _buildSessionsTab(sessions),
-                _buildMaintenanceTab(machines),
-                _buildProfileTab(),
-              ],
-            ),
+            child: _buildActiveTabContent(machines, sessions, activeSessions),
           ),
         ],
       ),
@@ -389,20 +410,36 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
           ),
         ),
         const SizedBox(height: 12),
-        DropdownButtonFormField<int>(
-          value: _selectedDuration,
+        InputDecorator(
           decoration: const InputDecoration(
             labelText: 'Tahmini Döngü Süresi (Dakika)',
             border: OutlineInputBorder(),
           ),
-          items: const [
-            DropdownMenuItem(value: 30, child: Text('30 Dakika (Hızlı)')),
-            DropdownMenuItem(value: 45, child: Text('45 Dakika (Standart)')),
-            DropdownMenuItem(value: 60, child: Text('60 Dakika (Yoğun / Kurutma)')),
-          ],
-          onChanged: (val) {
-            if (val != null) setState(() => _selectedDuration = val);
-          },
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<int>(
+              value: _selectedDuration,
+              isDense: true,
+              isExpanded: true,
+              items: const [
+                DropdownMenuItem(value: 30, child: Text('30 Dakika (Hızlı)')),
+                DropdownMenuItem(
+                  value: 45,
+                  child: Text('45 Dakika (Standart)'),
+                ),
+                DropdownMenuItem(
+                  value: 50,
+                  child: Text('50 Dakika (Sentetik)'),
+                ),
+                DropdownMenuItem(
+                  value: 60,
+                  child: Text('60 Dakika (Yoğun / Kurutma)'),
+                ),
+              ],
+              onChanged: (val) {
+                if (val != null) setState(() => _selectedDuration = val);
+              },
+            ),
+          ),
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
@@ -462,16 +499,23 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
-        DropdownButtonFormField<String>(
-          value: _selectedTicketMachineId,
+        InputDecorator(
           decoration: const InputDecoration(
             labelText: 'Arızalı Makine',
             border: OutlineInputBorder(),
           ),
-          items: machines.map((m) {
-            return DropdownMenuItem(value: m.id, child: Text(m.name));
-          }).toList(),
-          onChanged: (val) => setState(() => _selectedTicketMachineId = val),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: _selectedTicketMachineId,
+              isDense: true,
+              isExpanded: true,
+              items: machines.map((m) {
+                return DropdownMenuItem(value: m.id, child: Text(m.name));
+              }).toList(),
+              onChanged: (val) =>
+                  setState(() => _selectedTicketMachineId = val),
+            ),
+          ),
         ),
         const SizedBox(height: 12),
         TextField(
