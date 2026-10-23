@@ -1,0 +1,86 @@
+name: LaundroQR CI
+
+on:
+  push:
+    branches: [main, "phase/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  secret-and-db-scan:
+    name: Secret Hygiene & Supabase SQL Verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify no .env files or private keys are tracked
+        run: |
+          if git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$'; then
+            echo "ERROR: Tracked .env file detected!"
+            exit 1
+          fi
+          if grep -rnE 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+' supabase/ docs/ 2>/dev/null; then
+            echo "ERROR: Hardcoded JWT token detected!"
+            exit 1
+          fi
+      - name: Verify SQL migrations & RLS policies exist
+        run: |
+          test -f supabase/migrations/20261023000001_initial_schema.sql
+          test -f supabase/migrations/20261023000002_rls_and_rpcs.sql
+          test -f supabase/tests/rls_and_concurrency_test.sql
+          grep -q "ENABLE ROW LEVEL SECURITY" supabase/migrations/20261023000002_rls_and_rpcs.sql
+          grep -q "uq_one_active_session_per_machine" supabase/migrations/20261023000001_initial_schema.sql
+
+  admin-web:
+    name: Admin Web (Lint, Typecheck, Test, Build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check if apps/admin exists in commit
+        id: check_admin
+        run: |
+          if [ -f "apps/admin/package.json" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.check_admin.outputs.exists == 'true'
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: apps/admin/package-lock.json
+      - name: Install, Typecheck, Lint, Test & Build
+        if: steps.check_admin.outputs.exists == 'true'
+        working-directory: apps/admin
+        run: |
+          npm ci
+          npm run typecheck
+          npm run lint
+          npm test
+          npm run build
+
+  mobile-flutter:
+    name: Mobile App (Analyze & Test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check if apps/mobile exists in commit
+        id: check_mobile
+        run: |
+          if [ -f "apps/mobile/pubspec.yaml" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: subosito/flutter-action@v2
+        if: steps.check_mobile.outputs.exists == 'true'
+        with:
+          channel: "stable"
+          cache: true
+      - name: Analyze & Test Flutter App
+        if: steps.check_mobile.outputs.exists == 'true'
+        working-directory: apps/mobile
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
