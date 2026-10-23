@@ -15,6 +15,23 @@
 
 ---
 
+## 🌐 Live Demo (Canlı Sistem Bağlantıları)
+
+Sistem **Supabase Cloud (PostgreSQL + RLS)** veritabanı altyapısıyla uçtan uca entegre ve canlı olarak çalışmaktadır:
+
+- 🖥️ **Kurumsal Yönetim Paneli (Next.js Admin on Vercel):** [https://admin-beta-navy.vercel.app](https://admin-beta-navy.vercel.app)
+- 📱 **Yurt Sakini Mobil Uygulaması (Flutter Web on Netlify):** [https://dashing-capybara-ac1036.netlify.app](https://dashing-capybara-ac1036.netlify.app)
+
+---
+
+## 📊 Investor Relations & Pitch Deck (Yatırımcı Sunumu)
+
+LaundroQR'ın pazar vizyonu, gelir modeli, çok kiracılı SaaS mimarisi ve üniversite/KYK yurtları ölçeklenme stratejisini içeren resmi yatırımcı sunumuna aşağıdan ulaşabilirsiniz:
+
+- 📄 **[LaundroQR Official Pitch Deck (PDF)](docs/LaundroQR_Pitch_Deck.pdf)**
+
+---
+
 ## 📌 Project Status (Proje Durumu)
 
 | Faz | Modül | Durum | Doğrulama |
@@ -22,8 +39,8 @@
 | **Phase 0** | Mimari Tasarım, PRD & Güvenlik Planı | ✅ Tamamlandı | `docs/` |
 | **Phase 1** | PostgreSQL Şeması, RLS Politikaları, Atomik RPC'ler & CI | ✅ Tamamlandı | `supabase/` + GitHub Actions |
 | **Phase 2** | Next.js 15 Yönetim Paneli & Flutter Mobil Temeli | ✅ Tamamlandı | Vitest (6/6) & Flutter Test (3/3) |
-| **Phase 3** | Canlı Supabase Cloud Bağlantısı & RBAC Doğrulaması | ✅ Tamamlandı | Canlı Bulut Entegrasyonu |
-| **Phase 4** | Mobil Sakin Akışı (QR Doğrulama & Seans Sayacı) | 🔄 Aktif | Flutter Web / Desktop / Mobile |
+| **Phase 3–6** | Canlı Supabase Cloud, Vercel & Netlify Üretim Dağıtımı | ✅ Tamamlandı | Canlı Bulut Entegrasyonu |
+| **Phase 7–10** | IoT Röle Webhook, FCM Bildirimler, Cüzdan & APK Otomasyonu | ✅ Tamamlandı | Tam Otonom Paket |
 
 > **Şeffaflık ve Dürüstlük İlkesi:** QR kod ve yazılım zamanlayıcısı tek başına fiziksel bir çamaşır makinesinin çalışıp çalışmadığını veya boşaltıldığını doğrulayamaz. LaundroQR, tüm makine durumlarını doğrulama kaynağına göre (**Tahmini / Yazılım Zamanlayıcısı**, **Kullanıcı Bildirimi**, **Donanım Sensörü Doğrulamalı**) açıkça etiketler.
 
@@ -43,14 +60,14 @@ laundroqr/
 │   ├── migrations/      # Sıralı SQL şema, RLS ve atomik RPC migration dosyaları
 │   ├── seed.sql         # İzole çok kiracılı (multi-tenant) demo/test verisi
 │   └── tests/           # RLS kiracı izolasyonu ve eşzamanlılık (race condition) testleri
-├── docs/                # PRD, Mimari, Veritabanı, Güvenlik, Yol Haritası ve ADR belgeleri
-├── .github/             # GitHub Actions CI/CD ve Issue/PR şablonları
+├── docs/                # PRD, Mimari, Veritabanı, Güvenlik, Yol Haritası, ADR ve Pitch Deck
+├── .github/             # GitHub Actions CI/CD, APK Release ve Issue/PR şablonları
 ├── .editorconfig        # IDE arası kod biçimlendirme standardı
 └── LICENSE              # MIT Lisansı
 ```
 
 ### Temel Güvenlik ve Mühendislik Özellikleri
-- **Çok Kiracılı İzolasyon (Multi-Tenant RLS):** Tüm 13 veritabanı tablosunda PostgreSQL Row Level Security (RLS) zorunludur. Bir yurdun sakini veya yöneticisi başka bir yurdun verilerine erişemez.
+- **Çok Kiracılı İzolasyon (Multi-Tenant RLS):** Tüm veritabanı tablolarında PostgreSQL Row Level Security (RLS) zorunludur. Bir yurdun sakini veya yöneticisi başka bir yurdun verilerine erişemez.
 - **Atomik Seans Başlatma:** `uq_one_active_session_per_machine` kısmi benzersiz indeksi ve `FOR UPDATE` satır kilidi kullanan `start_machine_session` RPC fonksiyonu, aynı makineye aynı anda iki kişinin seans başlatmasını veritabanı seviyesinde engeller.
 - **Güvenli QR Kod Rotasyonu:** Yıpranan veya kopyalanan QR etiketleri yönetici tarafından tek tıkla (`rotate_machine_qr`) yenilenir ve işlem `audit_logs` tablosuna kaydedilir.
 
@@ -96,6 +113,7 @@ flutter run -d chrome
 
 | Belge | Açıklama |
 |---|---|
+| [docs/LaundroQR_Pitch_Deck.pdf](docs/LaundroQR_Pitch_Deck.pdf) | Yatırımcı Sunumu (Pitch Deck) |
 | [docs/PRD.md](docs/PRD.md) | Ürün gereksinimleri, kullanıcı hikayeleri ve kabul kriterleri |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Sistem mimarisi, veri akışı ve durum makinesi diyagramları |
 | [docs/DATABASE.md](docs/DATABASE.md) | Veritabanı tabloları, indeksler ve silme politikaları |
