@@ -1,7 +1,9 @@
 # Environment variables & secrets (NEVER COMMIT)
 .env
+.env.local
 .env.*
 !.env.example
+!apps/**/.env.example
 *.pem
 *.key
 service-account*.json
@@ -25,8 +27,11 @@ coverage/
 .packages
 .pub-cache/
 .pub/
+ios/Pods/
+macos/Pods/
 apps/mobile/build/
 apps/mobile/ios/Pods/
+apps/mobile/macos/Pods/
 apps/mobile/android/.gradle/
 apps/mobile/android/local.properties
 
@@ -47,3 +52,4 @@ yarn-error.log*
 pnpm-debug.log*
 tsbuildinfo
 *.tsbuildinfo
+next-env.d.ts
