@@ -11,6 +11,16 @@ class ResidentRepository {
   final List<MaintenanceTicketModel> _tickets = [];
   final NotificationPreferenceModel notificationPreferences =
       NotificationPreferenceModel();
+  double _walletBalanceTry = 150.00;
+
+  double get walletBalanceTry => _walletBalanceTry;
+
+  void addWalletFunds({required double amountTry, required String provider}) {
+    if (amountTry <= 0 || amountTry > 5000) {
+      throw ArgumentError('Yüklenecek tutar 1 TL ile 5000 TL arasında olmalıdır.');
+    }
+    _walletBalanceTry += amountTry;
+  }
 
   ResidentRepository({
     this.currentUserId = 'u1111111-1111-4111-8111-111111111103',

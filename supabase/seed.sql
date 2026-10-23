@@ -30,18 +30,21 @@ VALUES
   ('c2222222-2222-4222-8222-222222222221', '22222222-2222-4222-8222-222222222222', 'b2222222-2222-4222-8222-222222222221', 'A Blok Ana Çamaşırhane', 0, '06:30 - 23:00', 'KYK Demo Çamaşırhanesi', true)
 ON CONFLICT (id) DO NOTHING;
 
--- 4. Demo Machines
+-- 4. Demo Machines (with Phase 7 IoT machine_ip and mac_address columns)
 INSERT INTO public.machines (
   id, organization_id, laundry_room_id, name, machine_number, machine_type,
-  brand, model, status, status_source, default_duration_minutes, qr_code_id, is_active, notes
+  brand, model, status, status_source, default_duration_minutes, qr_code_id,
+  machine_ip, mac_address, is_active, notes
 )
 VALUES
-  ('d1111111-1111-4111-8111-111111111101', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #1', 1, 'washer', 'Beko', 'ProSmart 9kg', 'available', 'user_report', 45, 'e1111111-1111-4111-8111-111111111101', true, 'Hızlı yıkama 30 dk destekler.'),
-  ('d1111111-1111-4111-8111-111111111102', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #2', 2, 'washer', 'Beko', 'ProSmart 9kg', 'in_use', 'software', 45, 'e1111111-1111-4111-8111-111111111102', true, NULL),
-  ('d1111111-1111-4111-8111-111111111103', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #3', 3, 'washer', 'Bosch', 'Serie 6 10kg', 'cycle_complete', 'software', 50, 'e1111111-1111-4111-8111-111111111103', true, 'Tahmini süre doldu; fiziksel olarak boşaltıldığı henüz onaylanmadı.'),
-  ('d1111111-1111-4111-8111-111111111104', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Kurutma Makinesi #1', 4, 'dryer', 'Bosch', 'HeatPump 9kg', 'out_of_service', 'admin', 60, 'e1111111-1111-4111-8111-111111111104', false, 'Filtre sensörü arızası - teknik servis bekleniyor.'),
-  ('d1111111-1111-4111-8111-111111111105', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111112', 'Kurutma Makinesi #2', 1, 'dryer', 'Beko', 'EcoDry 8kg', 'available', 'software', 60, 'e1111111-1111-4111-8111-111111111105', true, NULL),
-  ('d2222222-2222-4222-8222-222222222201', '22222222-2222-4222-8222-222222222222', 'c2222222-2222-4222-8222-222222222221', 'KYK Çamaşır Makinesi #1', 1, 'washer', 'Arçelik', 'Endüstriyel 12kg', 'available', 'software', 40, 'e2222222-2222-4222-8222-222222222201', true, NULL)
-ON CONFLICT (id) DO NOTHING;
+  ('d1111111-1111-4111-8111-111111111101', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #1', 1, 'washer', 'Beko', 'ProSmart 9kg', 'available', 'user_report', 45, 'e1111111-1111-4111-8111-111111111101', '192.168.10.101', 'AA:BB:CC:11:22:01', true, 'Hızlı yıkama 30 dk destekler.'),
+  ('d1111111-1111-4111-8111-111111111102', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #2', 2, 'washer', 'Beko', 'ProSmart 9kg', 'in_use', 'software', 45, 'e1111111-1111-4111-8111-111111111102', '192.168.10.102', 'AA:BB:CC:11:22:02', true, NULL),
+  ('d1111111-1111-4111-8111-111111111103', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Çamaşır Makinesi #3', 3, 'washer', 'Bosch', 'Serie 6 10kg', 'cycle_complete', 'software', 50, 'e1111111-1111-4111-8111-111111111103', '192.168.10.103', 'AA:BB:CC:11:22:03', true, 'Tahmini süre doldu; fiziksel olarak boşaltıldığı henüz onaylanmadı.'),
+  ('d1111111-1111-4111-8111-111111111104', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111111', 'Kurutma Makinesi #1', 4, 'dryer', 'Bosch', 'HeatPump 9kg', 'out_of_service', 'admin', 60, 'e1111111-1111-4111-8111-111111111104', '192.168.10.104', 'AA:BB:CC:11:22:04', false, 'Filtre sensörü arızası - teknik servis bekleniyor.'),
+  ('d1111111-1111-4111-8111-111111111105', '11111111-1111-4111-8111-111111111111', 'c1111111-1111-4111-8111-111111111112', 'Kurutma Makinesi #2', 1, 'dryer', 'Beko', 'EcoDry 8kg', 'available', 'software', 60, 'e1111111-1111-4111-8111-111111111105', '192.168.10.105', 'AA:BB:CC:11:22:05', true, NULL),
+  ('d2222222-2222-4222-8222-222222222201', '22222222-2222-4222-8222-222222222222', 'c2222222-2222-4222-8222-222222222221', 'KYK Çamaşır Makinesi #1', 1, 'washer', 'Arçelik', 'Endüstriyel 12kg', 'available', 'software', 40, 'e2222222-2222-4222-8222-222222222201', '10.10.20.101', 'BB:CC:DD:22:33:01', true, NULL)
+ON CONFLICT (id) DO UPDATE SET
+  machine_ip = EXCLUDED.machine_ip,
+  mac_address = EXCLUDED.mac_address;
 
 COMMIT;

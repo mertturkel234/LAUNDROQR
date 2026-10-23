@@ -74,6 +74,8 @@ export interface Machine {
   default_duration_minutes: number;
   qr_code_id: string;
   qr_rotated_at: string;
+  machine_ip?: string | null;
+  mac_address?: string | null;
   is_active: boolean;
   notes: string | null;
   updated_at: string;

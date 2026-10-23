@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'core/models.dart';
 import 'core/resident_repository.dart';
+import 'screens/wallet_screen.dart';
 
 void main() {
   runApp(const LaundroQrMobileApp());
@@ -96,6 +97,11 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
       case 3:
         return _buildMaintenanceTab(machines);
       case 4:
+        return WalletScreen(
+          repository: widget.repository,
+          onBalanceChanged: () => setState(() {}),
+        );
+      case 5:
         return _buildProfileTab();
       default:
         return _buildMachinesTab(machines, activeSessions);
@@ -209,6 +215,10 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
           NavigationDestination(
             icon: Icon(Icons.build_outlined),
             label: 'Arıza Bildir',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.account_balance_wallet_outlined),
+            label: 'Cüzdan',
           ),
           NavigationDestination(
             icon: Icon(Icons.notifications_outlined),
