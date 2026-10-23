@@ -113,16 +113,34 @@ class _ResidentHomeScreenState extends State<ResidentHomeScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF1E3A8A),
         foregroundColor: Colors.white,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
           children: [
-            const Text(
-              'LaundroQR — Yurt Sakini',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 34,
+                height: 34,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.local_laundry_service, size: 28),
+              ),
             ),
-            Text(
-              widget.repository.currentOrganizationName,
-              style: const TextStyle(fontSize: 11, color: Colors.white70),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'LaundroQR — Yurt Sakini',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    widget.repository.currentOrganizationName,
+                    style: const TextStyle(fontSize: 11, color: Colors.white70),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

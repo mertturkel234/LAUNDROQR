@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
 import {
   MACHINE_STATUS_META,
   STATUS_SOURCE_LABELS,
@@ -352,10 +353,14 @@ export default function LaundroAdminPage() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-sm">
-                LQ
-              </div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="LaundroQR Logo"
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-lg object-contain border border-slate-200 bg-white shadow-sm"
+              />
               <div>
                 <h1 className="text-lg font-bold text-slate-900 leading-tight">
                   LaundroQR Kurumsal Yönetim Paneli

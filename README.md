@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.png" alt="LaundroQR Official Logo" width="220" />
+</p>
+
 # LaundroQR 🧺
 
 [![CI Status](https://img.shields.io/github/actions/workflow/status/mertturkel234/LAUNDROQR/ci.yml?branch=main&label=LaundroQR%20CI)](https://github.com/mertturkel234/LAUNDROQR/actions)
